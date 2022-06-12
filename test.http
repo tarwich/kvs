@@ -1,7 +1,7 @@
 @host=localhost:3216
 
 ###
-POST /k/test
+POST /k/game/test
 # Host: postman-echo.com
 # Scheme: https
 Content-Type: text/plain
@@ -10,7 +10,7 @@ Host: {{host}}
 This is a test
 
 ###
-POST /k/test
+POST /k/game/test
 # Host: postman-echo.com
 # Scheme: https
 Content-Type: application/json
@@ -20,5 +20,5 @@ Host: {{host}}
 
 ###
 
-GET /k/test
+GET /k/game/test
 Host: {{host}}

@@ -19,12 +19,10 @@ app.listen(PORT, () => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
-app.get('/k/:key', (req, res) => {
-  const { key } = req.params;
-  // The table name is the source address of the request.
-  const tableName = req.socket.remoteAddress;
+app.get('/k/:table/:key', (req, res) => {
+  const { table, key } = req.params;
 
-  const value = database.get(tableName, key);
+  const value = database.get(table, key)?.value;
 
   res.send(value);
 });
@@ -33,16 +31,20 @@ app.get('/k/:key', (req, res) => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
-app.post('/k/:key', (req, res) => {
-  const { key } = req.params;
-  // The table name is the source address of the request.
-  const tableName = req.socket.remoteAddress;
+app.post('/k/:table/:key', (req, res) => {
+  const { table, key } = req.params;
+  const author = req.socket.remoteAddress;
   // The value is the body of the request.
   const value = req.body;
 
-  database.set(tableName, key, value);
+  // Prevent writes if author empty
+  if (!author) {
+    console.log('Author is empty');
+    res.status(400).send('Invalid author');
+    return;
+  }
 
-  console.log('value', value);
+  database.set(table, key, value, author);
 
   res.send('OK');
 });
