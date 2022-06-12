@@ -1,0 +1,24 @@
+@host=localhost:3216
+
+###
+POST /k/test
+# Host: postman-echo.com
+# Scheme: https
+Content-Type: text/plain
+Host: {{host}}
+
+This is a test
+
+###
+POST /k/test
+# Host: postman-echo.com
+# Scheme: https
+Content-Type: application/json
+Host: {{host}}
+
+{"body": "This is a test"}
+
+###
+
+GET /k/test
+Host: {{host}}
