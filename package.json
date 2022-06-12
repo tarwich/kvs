@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Simple insecure key-value store",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
